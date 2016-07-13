@@ -8,6 +8,10 @@ import (
     "github.com/jroimartin/gocui"
 )
 
+var (
+    actionMessage = "Action: %s\n"
+)
+
 func main() {
     // Initial
     g := gocui.NewGui()
@@ -38,7 +42,25 @@ func main() {
 }
 
 func keybindings(g *gocui.Gui) error {
-    if err := g.SetKeybinding("", gocui.KeyCtrlC, gocui.ModNone, quitAction); err != nil {
+    // Quit: ctrl + c 　
+    if err := g.SetKeybinding("main", gocui.KeyCtrlC, gocui.ModNone, quitAction); err != nil {
+        return err
+    }
+
+    // Up Right Down Left
+    if err := g.SetKeybinding("main", gocui.KeyArrowUp, gocui.ModNone, upAction); err != nil {
+        return err
+    }
+
+    if err := g.SetKeybinding("main", gocui.KeyArrowRight, gocui.ModNone, rightAction); err != nil {
+        return err
+    }
+
+    if err := g.SetKeybinding("main", gocui.KeyArrowDown, gocui.ModNone, downAction); err != nil {
+        return err
+    }
+
+    if err := g.SetKeybinding("main", gocui.KeyArrowLeft, gocui.ModNone, leftAction); err != nil {
         return err
     }
 
@@ -65,6 +87,55 @@ func layout(g *gocui.Gui) error {
     return nil
 }
 
+// Actions
 func quitAction(g *gocui.Gui, v *gocui.View) error {
     return gocui.ErrQuit
+}
+
+func upAction(g *gocui.Gui, v *gocui.View) error {
+    fmt.Fprintf(v, actionMessage, "up")
+
+    cursorDown(g, v)
+
+    return nil
+}
+
+func rightAction(g *gocui.Gui, v *gocui.View) error {
+    fmt.Fprintf(v, actionMessage, "right")
+
+    cursorDown(g, v)
+
+    return nil
+}
+
+func downAction(g *gocui.Gui, v *gocui.View) error {
+    fmt.Fprintf(v, actionMessage, "down")
+
+    cursorDown(g, v)
+
+    return nil
+}
+
+func leftAction(g *gocui.Gui, v *gocui.View) error {
+    fmt.Fprintf(v, actionMessage, "left")
+
+    cursorDown(g, v)
+
+    return nil
+}
+
+//
+func cursorDown(g *gocui.Gui, v *gocui.View) error {
+    if v != nil {
+        cursorX, cursorY := v.Cursor()
+
+        if err := v.SetCursor(cursorX, cursorY + 1); err != nil {
+            originX, originY := v.Origin()
+
+            if err := v.SetOrigin(originX, originY + 1); err != nil {
+                return err
+            }
+        }
+    }
+    return nil
 }
