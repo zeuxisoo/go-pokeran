@@ -1,7 +1,9 @@
 package main
 
 import (
+    "fmt"
     "log"
+    "time"
 
     "github.com/jroimartin/gocui"
 )
@@ -44,6 +46,22 @@ func keybindings(g *gocui.Gui) error {
 }
 
 func layout(g *gocui.Gui) error {
+    maxX, maxY := g.Size()
+
+    if v, err := g.SetView("main", -1, -1, maxX, maxY); err != nil {
+        if err != gocui.ErrUnknownView {
+            return err
+        }
+
+        v.Wrap = true
+
+        fmt.Fprintf(v, "Program started at %s\n", time.Now().Format("2006-01-02 15:04:05"))
+
+        if err := g.SetCurrentView("main"); err != nil {
+            return err
+        }
+    }
+
     return nil
 }
 
