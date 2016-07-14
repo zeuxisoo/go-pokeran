@@ -1,6 +1,7 @@
 package main
 
 import (
+    "os/exec"
     "fmt"
     "log"
     "time"
@@ -17,7 +18,7 @@ var (
     fakeLocationLat  = 0.0
     fakeLocationLon  = 0.0
 
-    actionMessage = "Action: %s, Lat: %f, Lon: %f, Move: %f\n"
+    actionMessage = "Action: %6s, Lat: %f, Lon: %f, Move: %f\n"
 )
 
 func main() {
@@ -119,6 +120,7 @@ func upAction(g *gocui.Gui, v *gocui.View) error {
 
     updateGPXFile(fakeLocationLat, fakeLocationLon)
     cursorDown(g, v)
+    go syncGPXToDevice()
 
     return nil
 }
@@ -131,6 +133,7 @@ func rightAction(g *gocui.Gui, v *gocui.View) error {
 
     updateGPXFile(fakeLocationLat, fakeLocationLon)
     cursorDown(g, v)
+    go syncGPXToDevice()
 
     return nil
 }
@@ -143,6 +146,7 @@ func downAction(g *gocui.Gui, v *gocui.View) error {
 
     updateGPXFile(fakeLocationLat, fakeLocationLon)
     cursorDown(g, v)
+    go syncGPXToDevice()
 
     return nil
 }
@@ -155,6 +159,7 @@ func leftAction(g *gocui.Gui, v *gocui.View) error {
 
     updateGPXFile(fakeLocationLat, fakeLocationLon)
     cursorDown(g, v)
+    go syncGPXToDevice()
 
     return nil
 }
@@ -200,4 +205,13 @@ func randomMove() float64 {
     }
 
     return f
+}
+
+func syncGPXToDevice() {
+    cmd := exec.Command("osascript", "./scripts/sync-fake-location.applescript")
+    err := cmd.Run()
+
+    if err != nil {
+        log.Fatal(err)
+    }
 }
