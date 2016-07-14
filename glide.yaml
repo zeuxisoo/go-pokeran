@@ -2,3 +2,7 @@ package: github.com/zeuxisoo/go-pokeran
 import:
 - package: github.com/jroimartin/gocui
 - package: github.com/nsf/termbox-go
+- package: github.com/ptrv/go-gpx
+- package: golang.org/x/net
+  subpackages:
+  - html/charset

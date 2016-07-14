@@ -1,5 +1,5 @@
-hash: 63e94e6277d4ec999308a29e5e6273f47e08ad5a79c26d1fb2dc04a70ff62cd9
-updated: 2016-07-13T09:46:35.46315275+08:00
+hash: 11b32b2bf1fc5f1dd1a4c8ac1e6be47bcb5350a613321a0ad00b91d760433e48
+updated: 2016-07-13T18:50:56.765108033+08:00
 imports:
 - name: github.com/jroimartin/gocui
   version: 2dcda558bf18ec07c7065bf1eaf071b5305f7c0c
@@ -7,4 +7,30 @@ imports:
   version: d6bea18f789704b5f83375793155289da36a3c7f
 - name: github.com/nsf/termbox-go
   version: c45773466a30b680355d6494cc8826113c93cd0f
+- name: github.com/ptrv/go-gpx
+  version: c93804873f99672c0c8f6af17b7b51f316074dc5
+- name: golang.org/x/net
+  version: f841c39de738b1d0df95b5a7187744f0e03d8112
+  subpackages:
+  - html/charset
+  - html
+  - html/atom
+- name: golang.org/x/text
+  version: d5d7737684e596dbabf914ecf946d2783f35bdc2
+  subpackages:
+  - encoding
+  - encoding/charmap
+  - encoding/htmlindex
+  - transform
+  - encoding/internal/identifier
+  - encoding/internal
+  - encoding/japanese
+  - encoding/korean
+  - encoding/simplifiedchinese
+  - encoding/traditionalchinese
+  - encoding/unicode
+  - language
+  - internal/utf8internal
+  - runes
+  - internal/tag
 devImports: []
