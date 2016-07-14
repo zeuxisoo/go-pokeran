@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="Xcode">
-	<wpt lat="-43.527195" lon="172.60994399999998">
+	<wpt lat="-43.526144" lon="172.61071599999997">
 		<name>FakeLocation</name>
 	</wpt>
 </gpx>
