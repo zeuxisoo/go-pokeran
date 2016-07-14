@@ -1,6 +1,6 @@
 # Go Pokeran
 
-A controll fake location program for pokeran
+A console controller to make fake location for pokeran
 
 #### Usage
 
